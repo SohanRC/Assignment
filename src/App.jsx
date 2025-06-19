@@ -19,10 +19,8 @@ function App() {
     const nextIndex = currInd;
     const nextGradient = gradients[nextIndex];
 
-    // Show overlay with next gradient
     setOverlayGradient(nextGradient);
 
-    // Start fade-in animation
     setTimeout(() => {
       if (overlayRef.current) {
         overlayRef.current.classList.remove("opacity-0");
@@ -30,17 +28,16 @@ function App() {
       }
     }, 10);
 
-    // After fade, update background and remove overlay
     setTimeout(() => {
       setBgGradient(nextGradient);
       setIndex(nextIndex);
       setOverlayGradient(null);
-    }, 400); // match transition duration
+    }, 400); 
   };
 
   return (
     <div className="relative h-screen w-screen overflow-hidden">
-      {/* Base background */}
+
       <div
         className="absolute inset-0 z-0"
         style={{
@@ -50,7 +47,7 @@ function App() {
         }}
       />
 
-      {/* Overlay background for fade-in */}
+
       {overlayGradient && (
         <div
           ref={overlayRef}
@@ -63,7 +60,7 @@ function App() {
         />
       )}
 
-      {/* Foreground content */}
+
       <div className="relative z-20 h-full w-full">
         <MainSection
           index={index}
